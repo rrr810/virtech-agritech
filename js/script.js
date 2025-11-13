@@ -81,8 +81,7 @@ function handleFormSubmit(formId, messageId) {
     }
 }
 
-// Handle contact form
-handleFormSubmit('contact-form', 'form-message');
+// Contact form removed - only booking form remains
 
 // Handle booking form with Zapier webhook
 function handleBookingForm() {
