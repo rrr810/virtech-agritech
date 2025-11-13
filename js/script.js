@@ -120,7 +120,9 @@ function handleBookingForm() {
                     // Hide loading message
                     messageDiv.innerHTML = '';
                     // Show success modal
-                    modal.classList.add('show');
+                    if (modal) {
+                        modal.classList.add('show');
+                    }
                     // Reset form
                     form.reset();
                 } else {
