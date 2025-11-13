@@ -103,8 +103,8 @@ function handleBookingForm() {
                 timestamp: new Date().toISOString()
             };
 
-            // Show loading message
-            messageDiv.innerHTML = '<p style="color: #00B2FF; text-align: center;">Sending your booking request...</p>';
+            // Show loading message with spinner
+            messageDiv.innerHTML = '<p style="color: #00B2FF; text-align: center;"><span class="loading-spinner"></span>Sending your booking request...</p>';
 
             // Send to Zapier webhook
             fetch('https://hooks.zapier.com/hooks/catch/25228794/u8syfm3/', {
