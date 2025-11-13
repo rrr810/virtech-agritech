@@ -87,6 +87,8 @@ function handleFormSubmit(formId, messageId) {
 function handleBookingForm() {
     const form = document.getElementById('booking-form');
     const messageDiv = document.getElementById('booking-message');
+    const modal = document.getElementById('success-modal');
+    const modalClose = document.querySelector('.modal-close');
 
     if (form) {
         form.addEventListener('submit', function(e) {
@@ -115,7 +117,11 @@ function handleBookingForm() {
             })
             .then(response => {
                 if (response.ok) {
-                    messageDiv.innerHTML = '<p style="color: #00A859; text-align: center;">Thank you! Your booking request has been sent. We\'ll contact you within 24 hours.</p>';
+                    // Hide loading message
+                    messageDiv.innerHTML = '';
+                    // Show success modal
+                    modal.classList.add('show');
+                    // Reset form
                     form.reset();
                 } else {
                     throw new Error('Network response was not ok');
@@ -124,13 +130,27 @@ function handleBookingForm() {
             .catch(error => {
                 console.error('Error:', error);
                 messageDiv.innerHTML = '<p style="color: #ff6b6b; text-align: center;">Sorry, there was an error sending your request. Please try again or contact us directly.</p>';
-            })
-            .finally(() => {
-                // Clear message after 5 seconds
+                // Clear error message after 5 seconds
                 setTimeout(() => {
                     messageDiv.innerHTML = '';
                 }, 5000);
             });
+        });
+    }
+
+    // Modal close functionality
+    if (modalClose) {
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+    }
+
+    // Close modal when clicking outside
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
         });
     }
 }
